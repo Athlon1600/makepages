@@ -1,10 +1,9 @@
 {
-  "name": "makepages",
-  "version": "0.9.1",
-  "description": "Static site generator",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Athlon1600/makepages.git"
-  },
-  "license": "MIT"
+  "name": "makepages-project",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }

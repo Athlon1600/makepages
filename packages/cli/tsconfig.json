@@ -1,0 +1,11 @@
+{
+  "extends": ["@tsconfig/node20"],
+  "include": [
+    "src/**/*"
+  ],
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "rootDir": "src",
+    "outDir": "dist"
+  }
+}

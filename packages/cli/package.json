@@ -1,0 +1,38 @@
+{
+  "name": "makepages",
+  "version": "0.9.1",
+  "description": "Static site generator",
+  "license": "MIT",
+  "bin": {
+    "makepages": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "rimraf --glob dist/*",
+    "build": "tsc -p tsconfig.json",
+    "watch": "npm run build -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Athlon1600/makepages.git",
+    "directory": "packages/cli"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.9",
+    "@types/node": "^20"
+  },
+  "dependencies": {
+    "@11ty/nunjucks": "^4.0.0-alpha.1",
+    "chokidar": "^5.0.0",
+    "esbuild": "^0.28.1",
+    "esbuild-plugin-vue-next": "^0.1.4",
+    "glob": "^13.0.6",
+    "live-server": "^1.2.2",
+    "rimraf": "^6.1.3",
+    "vue": "^3.5.35"
+  }
+}
