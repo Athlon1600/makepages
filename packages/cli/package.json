@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@11ty/nunjucks": "^4.0.0-alpha.1",
-    "chokidar": "^5.0.0",
+    "chokidar": "^4.0.3",
     "esbuild": "^0.28.1",
     "esbuild-plugin-vue-next": "^0.1.4",
     "glob": "^13.0.6",
