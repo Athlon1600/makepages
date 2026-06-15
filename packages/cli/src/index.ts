@@ -22,7 +22,7 @@ async function _runCli(): Promise<void> {
         
         `;
         console.log(helpMessage);
-        process.exit(1);
+        process.exit(0);
     }
 
     if (action === 'build') {
