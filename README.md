@@ -12,10 +12,67 @@ You can then deploy it to many free cloud hosting providers to make it load fast
 
 ## :package: Installation
 
+**Requirements:** Node.js version 18 or above.
+
 Install it globally on your system using npm:
 
 ```shell
 npm install -g makepages
 ```
 
-Requirements: Node.js version 18 or above.
+## Features
+
+- Write your pages in plain HTML which allows for infinite flexibility.
+- Nunjucks templating support out of the box. See: https://mozilla.github.io/nunjucks/
+- Uses file-system based routing (`src/pages/about.html` => `/about.html`)
+- Uses `esbuild` to compile assets referenced inside your pages, which is much faster than what other site generators
+  use.
+
+## Quick Start
+
+Create a directory for your project, and then navigate into it.
+
+```shell
+mkdir example.com
+cd example.com
+```
+
+Once inside, simply run:
+
+```shell
+makepages dev
+```
+
+This will both start a local server and automatically rebuild your site when you make any changes.
+
+## :file_folder: Website folder structure
+
+For MakePages to work, it expects a certain folder structure. At minimum, it needs `src/pages` to read pages from.
+See how it all works in the chart below:
+
+```mermaid
+flowchart TD
+    A["📁 Root directory"]
+
+    A --> B["📁 src/"]
+    A --> C["📁 public/"]
+
+    B ~~~ C
+
+    B --> D["Look for pages<br/>src/pages/*.html"]
+    D --> E["Compile pages<br/>using Nunjucks"]
+
+    E --> F["Look for JavaScript assets"]
+    E --> G["Look for CSS assets"]
+
+    F --> H["⚡ Compile using esbuild"]
+    G --> H
+
+    H --> I["Final transformations"]
+    E --> I
+
+    C --> J["Copy everything as-is<br/>to dist"]
+
+    I --> K["dist/<br>🚀 Ready to deploy"]
+    J --> K
+```

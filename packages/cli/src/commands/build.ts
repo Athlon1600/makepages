@@ -12,7 +12,12 @@ const path = require('path');
 
 async function copyPublicToDist() {
     fs.mkdirSync("./dist", {recursive: true});
-    fs.cpSync("public", "dist", {recursive: true});
+
+    const publicPath = "./public";
+
+    if (fs.existsSync(publicPath) && fs.statSync(publicPath).isDirectory()) {
+        fs.cpSync(publicPath, "dist", {recursive: true});
+    }
 }
 
 function createDirectoryIfNotExist(filePath: string) {
