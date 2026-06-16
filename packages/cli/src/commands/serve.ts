@@ -1,3 +1,5 @@
+import {registerShutdownCallback} from "../registerShutdownCallback";
+
 const liveServer = require("live-server");
 
 async function main() {
@@ -12,6 +14,10 @@ async function main() {
             next();
         }]
     };
+
+    registerShutdownCallback(() => {
+        liveServer.shutdown();
+    });
 
     liveServer.start(params);
 }

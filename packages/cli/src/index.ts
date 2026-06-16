@@ -1,6 +1,8 @@
 import {build} from "./commands/build";
 import {serve} from "./commands/serve";
 import {cleanCommand} from "./commands/clean";
+import {Logger} from "./Logger";
+import chalk from "chalk";
 
 async function _runCli(): Promise<void> {
 
@@ -8,6 +10,7 @@ async function _runCli(): Promise<void> {
 
     const isProduction = args.includes("--production") || args.includes("--prod");
     const isWatchMode = args.includes('--watch');
+    Logger.isVerbose = args.includes('--verbose') || args.includes('--debug');
 
     const action = process.argv[2] || null;
 
@@ -31,6 +34,16 @@ async function _runCli(): Promise<void> {
         await cleanCommand();
     } else if (action === "serve") {
         serve();
+    }
+
+    if (action === "dev") {
+        build(true);
+        Logger.info(chalk.blue("Watching for file changes..."));
+
+        // TODO: better off to just wait until dist directory is available
+        setTimeout(() => {
+            serve();
+        }, 800);
     }
 
     if (action === "version") {

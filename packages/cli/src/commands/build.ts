@@ -1,6 +1,9 @@
 import {globSync} from "glob";
 import {processHtml} from "../util/processHtml";
 import {rimraf} from "rimraf";
+import {registerShutdownCallback} from "../registerShutdownCallback";
+import {Logger} from "../Logger";
+import chalk from "chalk";
 
 const chokidar = require("chokidar");
 const nunjucks = require('@11ty/nunjucks');
@@ -33,11 +36,13 @@ async function compileSrc() {
     const pagesDir = path.join(process.cwd(), './src/pages');
 
     const pages = globSync(pagesDir + "/**/*.html").map((val) => {
-        return `./${val}`;
+        return path.normalize(`./${val}`);
     });
 
+    const timeStart = Date.now();
+
     for (const page of pages) {
-        console.debug(`Processing Page: ${page}`);
+        Logger.info(`Processing Page: ${page}`);
 
         const relativeToSource = path.relative("./src", page);
         const relativeToPages = path.relative("./src/pages", page);
@@ -48,17 +53,28 @@ async function compileSrc() {
             modified_at: (new Date(stat.mtimeMs)).toLocaleString(),
         });
 
-        html = await processHtml(html);
+        try {
+            html = await processHtml(html);
+        } catch (e) {
+            console.error(e);
+        }
 
         const resultPath = `./dist/${relativeToPages}`;
         createDirectoryIfNotExist(resultPath);
         fs.writeFileSync(resultPath, html);
     }
+
+    const duration = Date.now() - timeStart;
+
+    Logger.info(chalk.green(`Built ${pages.length} files in ${duration} ms`));
+
 }
 
 async function buildAll() {
 
-    rimraf.rimrafSync("./dist");
+    rimraf.rimrafSync("./dist/*", {
+        glob: true
+    });
 
     try {
         await compileSrc();
@@ -87,13 +103,10 @@ async function builder(isWatchMode: boolean) {
             buildAll();
         });
 
-        function endWatchMode() {
+        registerShutdownCallback(() => {
             console.log(("Exiting watch mode..."));
             watcher.close();
-        }
-
-        process.on("SIGINT", endWatchMode);
-        process.on("beforeExit", endWatchMode);
+        });
 
     } else {
         await buildAll();
