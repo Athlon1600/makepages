@@ -48,13 +48,12 @@ This will both start a local server and automatically rebuild your site when you
 ## :file_folder: Website folder structure
 
 For MakePages to work, it expects a certain folder structure. At minimum, it needs `src/pages` directory to read pages
-from.
-
-See how it all works in the chart below:
+from. See how it all works in the chart below:
 
 ```mermaid
 flowchart TD
     A["📁 Root directory"]
+    A --> P["📄 package.json"]
     A --> B["📁 src/"]
     A --> C["📁 public/"]
     B ~~~ C
@@ -64,7 +63,7 @@ flowchart TD
     E --> G["Look for CSS assets"]
     F --> H["⚡ Compile using esbuild"]
     G --> H
-    H --> I["Final transformations"]
+    H --> I["Final page transformations"]
     E --> I
     C --> J["Copy everything as-is<br/>to dist"]
     I --> K["dist/<br>🚀 Ready to deploy"]
