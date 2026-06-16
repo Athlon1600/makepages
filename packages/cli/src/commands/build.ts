@@ -35,9 +35,14 @@ async function compileSrc() {
 
     const pagesDir = path.join(process.cwd(), './src/pages');
 
-    const pages = globSync(pagesDir + "/**/*.html").map((val) => {
-        return path.normalize(`./${val}`);
+    const pages = globSync(pagesDir + "/**/*.html", {absolute: false}).map((val) => {
+        return `./${val}`;
     });
+
+    if (pages.length === 0) {
+        Logger.error("No pages found inside src/pages directory");
+        return;
+    }
 
     const timeStart = Date.now();
 
