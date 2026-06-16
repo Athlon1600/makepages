@@ -20,7 +20,7 @@ Install it globally on your system using npm:
 npm install -g makepages
 ```
 
-## Features
+## :heavy_check_mark: Features
 
 - Write your pages in plain HTML which allows for infinite flexibility.
 - Nunjucks templating support out of the box. See: https://mozilla.github.io/nunjucks/
@@ -47,32 +47,33 @@ This will both start a local server and automatically rebuild your site when you
 
 ## :file_folder: Website folder structure
 
-For MakePages to work, it expects a certain folder structure. At minimum, it needs `src/pages` to read pages from.
+For MakePages to work, it expects a certain folder structure. At minimum, it needs `src/pages` directory to read pages
+from.
+
 See how it all works in the chart below:
 
 ```mermaid
 flowchart TD
     A["📁 Root directory"]
-
     A --> B["📁 src/"]
     A --> C["📁 public/"]
-
     B ~~~ C
-
     B --> D["Look for pages<br/>src/pages/*.html"]
     D --> E["Compile pages<br/>using Nunjucks"]
-
     E --> F["Look for JavaScript assets"]
     E --> G["Look for CSS assets"]
-
     F --> H["⚡ Compile using esbuild"]
     G --> H
-
     H --> I["Final transformations"]
     E --> I
-
     C --> J["Copy everything as-is<br/>to dist"]
-
     I --> K["dist/<br>🚀 Ready to deploy"]
     J --> K
 ```
+
+## Demo website
+
+This repository contains an example website at - :file_folder:[apps/example](https://github.com/Athlon1600/makepages/tree/master/apps/example), 
+which when deployed looks like this:
+
+- https://makepages-example.netlify.app/
