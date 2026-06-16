@@ -1,0 +1,18 @@
+{
+  "name": "example",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "clean": "makepages clean",
+    "serve": "makepages serve",
+    "build": "makepages build --production",
+    "watch": "makepages build --watch",
+    "dev": "makepages dev",
+    "netlify:preview": "npx netlify deploy --filter=example --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --dir=./apps/example/dist",
+    "netlify:production": "npx netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod --dir=./dist"
+  },
+  "dependencies": {
+    "makepages": "*"
+  }
+}
