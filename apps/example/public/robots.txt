@@ -1,0 +1,10 @@
+# Block OpenAI (ChatGPT, Search)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+# Block Anthropic (Claude)
+User-agent: ClaudeBot
+Disallow: /

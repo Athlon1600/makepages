@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+
+    <link rel="stylesheet" href="/styles.css">
+
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <nav>
+            <div class="left">
+                <a href="/">Homepage</a>
+                <a href="/page1.html">Page 1</a>
+                <a href="/page2.html">Page 2</a>
+            </div>
+
+            <div>
+                Current Time: <span id="current_time"></span>
+            </div>
+
+            <div class="right">
+                <a href="/about">About us</a>
+                <a href="/about/offices.html">Offices</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</div>
+
+<script src="/assets/global.js"></script>
+
+{% include "partials/footer.html" %}
+
+</body>
+</html>

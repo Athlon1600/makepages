@@ -1,0 +1,37 @@
+{% extends "layouts/master.html" %}
+
+{% set title = "Office Locations" %}
+
+{% block head %}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+    #map {
+        height: 500px;
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<h1>Office locations</h1>
+
+<p>We can embed any sort of complex JavaScript into any page.</p>
+
+<div id="map"></div>
+
+<script>
+    var map = L.map('map').setView([47.572530672443676, -122.14691805765084], 10);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    L.marker([47.60779558920053, -122.32967204751769]).addTo(map);
+    // Bellevue
+    L.marker([47.6234879259632, -122.17646874311617]).addTo(map);
+
+</script>
+
+{% endblock %}
+
