@@ -27,7 +27,7 @@ export const compileScripts = async (html: string) => {
         const buildResult: BuildResult = await esbuild.build({
             entryPoints: [srcPath],
             bundle: true,
-            minify: true,
+            minify: false,
             write: false,
             platform: 'browser',
             target: ['es2015'],

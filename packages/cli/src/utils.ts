@@ -1,5 +1,4 @@
 import {StringMatch} from "./types";
-import {Logger} from "./Logger";
 
 export const extractScripts = (html: string) => {
 

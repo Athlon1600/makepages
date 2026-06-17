@@ -5,9 +5,9 @@ import {Logger} from "../Logger";
 import chalk from "chalk";
 import {processStyles} from "../transform/processStyles";
 import {compileScripts} from "../transform/compileScripts";
+import {compileNunjucks} from "../transform/compileNunjucks";
 
 const chokidar = require("chokidar");
-const nunjucks = require('@11ty/nunjucks');
 const fs = require("fs");
 const path = require('path');
 
@@ -27,17 +27,7 @@ function createDirectoryIfNotExist(filePath: string) {
     fs.mkdirSync(resultDir, {recursive: true});
 }
 
-async function compileSrc() {
-
-    const env = nunjucks.configure([
-        "./src"
-    ], {
-        autoescape: true,
-        throwOnUndefined: false
-    });
-
-    // Add global variables (available in ALL templates)
-    env.addGlobal('year', new Date().getFullYear());
+async function compilePages() {
 
     const pagesDir = path.join(process.cwd(), './src/pages');
 
@@ -55,16 +45,12 @@ async function compileSrc() {
     for (const page of pages) {
         Logger.info(`Processing Page: ${page}`);
 
-        const relativeToSource = path.relative("./src", page);
         const relativeToPages = path.relative("./src/pages", page);
 
-        const stat = fs.statSync(page);
-
-        let html = nunjucks.render(relativeToSource, {
-            modified_at: (new Date(stat.mtimeMs)).toLocaleString(),
-        });
+        let html = fs.readFileSync(page, 'utf8');
 
         try {
+            html = await compileNunjucks(page, html);
             html = await compileScripts(html);
             html = await processStyles(html);
         } catch (e) {
@@ -89,7 +75,7 @@ async function buildAll() {
     });
 
     try {
-        await compileSrc();
+        await compilePages();
         await copyPublicToDist();
     } catch (e) {
         console.error(e);

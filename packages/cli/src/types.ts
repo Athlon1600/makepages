@@ -6,3 +6,5 @@ export type StringMatch = {
 }
 
 export type StringMatchWithCompiled = StringMatch & { compiled: string, hash: string };
+
+export type PageTransformer = (pageFilePath: string, fileContents: string) => Promise<string>
