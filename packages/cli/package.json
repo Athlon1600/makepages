@@ -4,7 +4,7 @@
   "description": "Static site generator",
   "license": "MIT",
   "bin": {
-    "makepages": "./dist/cli.js"
+    "makepages": "dist/cli.js"
   },
   "files": [
     "dist"
