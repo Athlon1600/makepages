@@ -58,7 +58,7 @@ flowchart TD
     A --> C["📁 public/"]
     B ~~~ C
     B --> D["Look for pages<br/>src/pages/*.html"]
-    D --> E["Compile pages<br/>using Nunjucks"]
+    D --> E["🧩 Compile pages<br/>using Nunjucks"]
     E --> F["Look for JavaScript assets"]
     E --> G["Look for CSS assets"]
     F --> H["⚡ Compile using esbuild"]
@@ -66,7 +66,7 @@ flowchart TD
     H --> I["Final page transformations"]
     E --> I
     C --> J["Copy everything as-is<br/>to dist"]
-    I --> K["dist/<br>🚀 Ready to deploy"]
+    I --> K["📁 dist/<br>Ready to deploy"]
     J --> K
 ```
 
