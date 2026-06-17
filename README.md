@@ -28,6 +28,8 @@ npm install -g makepages
 - Uses file-system based routing (`src/pages/about.html` => `/about.html`)
 - Uses `esbuild` to compile assets referenced inside your pages, which is much faster than what other site generators
   use.
+- Asset versioning (`/styles.css` => `/styles-4cded09.css`)
+- Automatic JS/CSS inlining when it makes sense.
 
 ## Quick Start
 
@@ -49,7 +51,7 @@ This will both start a local server and automatically rebuild your site when you
 ## :file_folder: Website folder structure
 
 For MakePages to work, it expects a certain folder structure. At minimum, it needs `src/pages` directory to read pages
-from. See how it all works in the chart below:
+from. See how the entire build process works in the chart below:
 
 ```mermaid
 flowchart TD
