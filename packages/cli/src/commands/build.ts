@@ -1,10 +1,10 @@
 import {globSync} from "glob";
-import {processHtml} from "../util/processHtml";
 import {rimraf} from "rimraf";
 import {registerShutdownCallback} from "../registerShutdownCallback";
 import {Logger} from "../Logger";
 import chalk from "chalk";
 import {processStyles} from "../transform/processStyles";
+import {compileScripts} from "../transform/compileScripts";
 
 const chokidar = require("chokidar");
 const nunjucks = require('@11ty/nunjucks');
@@ -65,7 +65,7 @@ async function compileSrc() {
         });
 
         try {
-            html = await processHtml(html);
+            html = await compileScripts(html);
             html = await processStyles(html);
         } catch (e) {
             console.error(e);

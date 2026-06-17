@@ -3,14 +3,20 @@ import {Logger} from "./Logger";
 
 export const extractScripts = (html: string) => {
 
+    const result: StringMatch[] = [];
+
     const scriptRegex = /<script[^>]*src\s*=\s*["']([^"']+)["'][^>]*>/gi;
-    const matches = [...html.matchAll(scriptRegex)];
 
-    const result: string[] = [];
+    let match;
 
-    for (const m of matches) {
-        const scriptPath = m[1] as string;
-        result.push(scriptPath);
+    while ((match = scriptRegex.exec(html)) !== null) {
+        const temp: StringMatch = {
+            indexStart: match.index,
+            indexEnd: scriptRegex.lastIndex,
+            fullMatch: match[0],
+            match: match[1]
+        }
+        result.push(temp);
     }
 
     return result;
