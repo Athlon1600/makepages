@@ -6,6 +6,8 @@ import chalk from "chalk";
 import {processStyles} from "../transform/processStyles";
 import {compileScripts} from "../transform/compileScripts";
 import {compileNunjucks} from "../transform/compileNunjucks";
+import {minifyHtml} from "../transform/minifyHtml";
+import {isInProductionMode} from "../utils";
 
 const chokidar = require("chokidar");
 const fs = require("fs");
@@ -53,6 +55,11 @@ async function compilePages() {
             html = await compileNunjucks(page, html);
             html = await compileScripts(html);
             html = await processStyles(html);
+
+            if (isInProductionMode()) {
+                html = await minifyHtml(html);
+            }
+
         } catch (e) {
             console.error(e);
         }

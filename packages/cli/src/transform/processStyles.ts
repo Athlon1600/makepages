@@ -1,6 +1,6 @@
 import esbuild, {BuildResult} from "esbuild";
 import {Logger} from "../Logger";
-import {extractCss, isExternal, replaceBetween, sizeInBytes} from "../utils";
+import {extractCss, isExternal, isInProductionMode, replaceBetween, sizeInBytes} from "../utils";
 import {StringMatchWithCompiled} from "../types";
 import path from "path";
 import * as fs from "node:fs";
@@ -8,10 +8,6 @@ import * as fs from "node:fs";
 // 14 KB rule --- https://web.dev/articles/extract-critical-css
 function shouldBeMinified(str: string) {
     return sizeInBytes(str) <= 14 * 1024;
-}
-
-const isProd = () => {
-    return process.argv.includes("--production") || process.argv.includes("--prod");
 }
 
 export const processStyles = async (html: string) => {
@@ -35,7 +31,7 @@ export const processStyles = async (html: string) => {
             write: false,
             entryPoints: [srcPath],
             bundle: true,
-            minify: isProd(),
+            minify: isInProductionMode(),
             platform: 'browser',
         });
 

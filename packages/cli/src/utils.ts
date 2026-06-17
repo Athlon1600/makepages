@@ -53,3 +53,7 @@ export function replaceBetween(str: string, startIndex: number, endIndex: number
 export function sizeInBytes(str: any): number {
     return (new Blob([str])).size;
 }
+
+export const isInProductionMode = (): boolean => {
+    return process.argv.includes("--production") || process.argv.includes("--prod");
+}

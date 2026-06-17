@@ -1,6 +1,7 @@
 [![Node Compatibility](https://github.com/Athlon1600/makepages/actions/workflows/nodejs.yml/badge.svg)](https://github.com/Athlon1600/makepages/actions/workflows/nodejs.yml)
 ![GitHub License](https://img.shields.io/github/license/Athlon1600/makepages)
 ![GitHub top language](https://img.shields.io/github/languages/top/Athlon1600/makepages)
+![esbuild](https://img.shields.io/badge/bundler-esbuild-FFCF00)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Athlon1600/makepages)
 
 # MakePages

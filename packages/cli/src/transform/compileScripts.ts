@@ -1,6 +1,6 @@
 import esbuild, {BuildResult} from "esbuild";
 import vuePlugin from "esbuild-plugin-vue-next";
-import {extractScripts, isExternal, replaceBetween} from "../utils";
+import {extractScripts, isExternal, isInProductionMode, replaceBetween} from "../utils";
 import {Logger} from "../Logger";
 import * as fs from "node:fs";
 
@@ -27,7 +27,7 @@ export const compileScripts = async (html: string) => {
         const buildResult: BuildResult = await esbuild.build({
             entryPoints: [srcPath],
             bundle: true,
-            minify: false,
+            minify: isInProductionMode(),
             write: false,
             platform: 'browser',
             target: ['es2015'],
