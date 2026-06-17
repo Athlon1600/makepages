@@ -4,6 +4,7 @@ import {rimraf} from "rimraf";
 import {registerShutdownCallback} from "../registerShutdownCallback";
 import {Logger} from "../Logger";
 import chalk from "chalk";
+import {processStyles} from "../transform/processStyles";
 
 const chokidar = require("chokidar");
 const nunjucks = require('@11ty/nunjucks');
@@ -65,6 +66,7 @@ async function compileSrc() {
 
         try {
             html = await processHtml(html);
+            html = await processStyles(html);
         } catch (e) {
             console.error(e);
         }
