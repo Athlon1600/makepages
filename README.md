@@ -55,7 +55,6 @@ Folder `apps/example` contains an example website, which when deployed looks lik
 
 - https://makepages-example.netlify.app/
 
-You may also try it out live:
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/Athlon1600/makepages/tree/master/apps/example)
 
 ## :file_folder: Website Folder Structure
