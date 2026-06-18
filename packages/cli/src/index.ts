@@ -3,6 +3,7 @@ import {serve} from "./commands/serve";
 import {cleanCommand} from "./commands/clean";
 import {Logger} from "./Logger";
 import chalk from "chalk";
+import {packageVersion} from "./utils";
 
 async function _runCli(): Promise<void> {
 
@@ -47,9 +48,7 @@ async function _runCli(): Promise<void> {
     }
 
     if (action === "version") {
-
-        const {version} = require("../package.json");
-        console.log(version);
+        console.log(packageVersion());
     }
 }
 

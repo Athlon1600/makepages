@@ -72,7 +72,6 @@ async function compilePages() {
     const duration = Date.now() - timeStart;
 
     Logger.log(chalk.green(`Built ${pages.length} files in ${duration} ms`));
-
 }
 
 async function buildAll() {

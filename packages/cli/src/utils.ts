@@ -63,3 +63,8 @@ export const isInProductionMode = (): boolean => {
 export function createAssetHash(data: string, maxLength: number = 8): string {
     return crypto.createHash('sha256').update(data).digest('hex').substring(0, maxLength);
 }
+
+export function packageVersion(): string {
+    const {version} = require("../package.json");
+    return version;
+}
