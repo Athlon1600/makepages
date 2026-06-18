@@ -21,11 +21,11 @@ jobs:
           node-version: '22.19.0'
           cache: 'npm'
 
-      - name: Build MakePages
-        run: npm install && npm run build --workspace=makepages
+      - name: Install MakePages
+        run: npm install -g makepages
 
       - name: Deploy to Production
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: cd apps/example && npm run build && npm run netlify:production
+        run: cd apps/example && npm install && npm run build && npm run netlify:production
