@@ -1,6 +1,6 @@
 import esbuild, {BuildResult} from "esbuild";
 import {Logger} from "../Logger";
-import {extractCss, isExternal, isInProductionMode, replaceBetween, sizeInBytes} from "../utils";
+import {extractCss, createAssetHash, isExternal, isInProductionMode, replaceBetween, sizeInBytes} from "../utils";
 import {StringMatchWithCompiled} from "../types";
 import path from "path";
 import * as fs from "node:fs";
@@ -42,11 +42,12 @@ export const processStyles = async (html: string) => {
 
             // esbuild internally uses some exotic hashing library. We want basic SHA256 instead
             // https://github.com/evanw/esbuild/pull/1107
+            const hashSafe = createAssetHash(firstOutputFile.text);
 
             compiledStyles.push({
                 ...styleMatch,
                 compiled: cssContents,
-                hash: firstOutputFile.hash
+                hash: hashSafe
             });
         }
     }
@@ -65,8 +66,7 @@ export const processStyles = async (html: string) => {
             const hrefParts = path.parse(compiledStyle.match);
 
             // new filename
-            const hashSafe = compiledStyle.hash.replace(/[^a-z0-9]/gi, '');
-            const newName = `${hrefParts.name}-${hashSafe}.css`;
+            const newName = `${hrefParts.name}-${compiledStyle.hash}.css`;
 
             const newHref = hrefParts.dir + (hrefParts.dir.endsWith("/") ? "" : "/") + newName;
 

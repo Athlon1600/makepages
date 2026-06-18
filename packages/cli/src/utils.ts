@@ -1,5 +1,7 @@
 import {StringMatch} from "./types";
 
+const crypto = require('crypto');
+
 export const extractScripts = (html: string) => {
 
     const result: StringMatch[] = [];
@@ -56,4 +58,8 @@ export function sizeInBytes(str: any): number {
 
 export const isInProductionMode = (): boolean => {
     return process.argv.includes("--production") || process.argv.includes("--prod");
+}
+
+export function createAssetHash(data: string, maxLength: number = 8): string {
+    return crypto.createHash('sha256').update(data).digest('hex').substring(0, maxLength);
 }

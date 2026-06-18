@@ -1,6 +1,6 @@
 import esbuild, {BuildResult} from "esbuild";
 import vuePlugin from "esbuild-plugin-vue-next";
-import {extractScripts, isExternal, isInProductionMode, replaceBetween} from "../utils";
+import {extractScripts, createAssetHash, isExternal, isInProductionMode, replaceBetween} from "../utils";
 import {Logger} from "../Logger";
 import * as fs from "node:fs";
 
@@ -43,7 +43,8 @@ export const compileScripts = async (html: string) => {
             const destinationPath = path.join(process.cwd(), "./dist", hrefParts.dir);
             fs.mkdirSync(destinationPath, {recursive: true});
 
-            const newName = `${hrefParts.name}-${firstOutputFile.hash}.js`;
+            const hashSafe = createAssetHash(firstOutputFile.text);
+            const newName = `${hrefParts.name}-${hashSafe}.js`;
 
             const newPath = path.join(destinationPath, newName);
             fs.writeFileSync(newPath, firstOutputFile.text);
