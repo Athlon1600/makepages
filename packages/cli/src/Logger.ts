@@ -14,11 +14,12 @@ export class Logger {
 
     public static isVerbose: boolean = false;
 
-    public static log(str: any) {
+    public static log(str: any, color: string = 'white') {
         console.log(withPrefix(str));
     }
 
     public static info(str: any) {
+        str = chalk.blue('[INFO] ', str);
         console.info(withPrefix(str));
     }
 

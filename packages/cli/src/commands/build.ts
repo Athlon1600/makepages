@@ -45,7 +45,7 @@ async function compilePages() {
     const timeStart = Date.now();
 
     for (const page of pages) {
-        Logger.info(`Processing Page: ${page}`);
+        Logger.log(chalk.blue(`Processing Page: ${page}`));
 
         const relativeToPages = path.relative("./src/pages", page);
 
@@ -71,7 +71,7 @@ async function compilePages() {
 
     const duration = Date.now() - timeStart;
 
-    Logger.info(chalk.green(`Built ${pages.length} files in ${duration} ms`));
+    Logger.log(chalk.green(`Built ${pages.length} files in ${duration} ms`));
 
 }
 

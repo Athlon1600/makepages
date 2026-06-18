@@ -25,7 +25,7 @@ export const processStyles = async (html: string) => {
 
         const srcPath = path.join("./src", href);
 
-        Logger.info(`Compiling CSS: ${href}`);
+        Logger.log(`Compiling CSS: ${href}`);
 
         const cssBuildResult: BuildResult = await esbuild.build({
             write: false,

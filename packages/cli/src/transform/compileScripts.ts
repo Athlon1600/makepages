@@ -22,7 +22,7 @@ export const compileScripts = async (html: string) => {
 
         const srcPath = path.join("./src", scriptMatch.match);
 
-        Logger.info(`Compiling JS: ${srcPath}`);
+        Logger.log(`Compiling JS: ${srcPath}`);
 
         const buildResult: BuildResult = await esbuild.build({
             entryPoints: [srcPath],
