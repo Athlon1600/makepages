@@ -3,10 +3,11 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/Athlon1600/makepages)
 ![esbuild](https://img.shields.io/badge/bundler-esbuild-FFCF00)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Athlon1600/makepages)
+![NPM Version](https://img.shields.io/npm/v/makepages)
 
 # MakePages
 
-MakePages is a very simple and flexible static site generator for Node.js.
+MakePages is a very simple and flexible **static site generator** for Node.js.
 
 Use it to generate a self-contained website that requires no server side rendering.
 You can then deploy it to many free cloud hosting providers to make it load fast globally.
@@ -48,7 +49,16 @@ makepages dev
 
 This will both start a local server and automatically rebuild your site when you make any changes.
 
-## :file_folder: Website folder structure
+## Demo Playground
+
+Folder `apps/example` contains an example website, which when deployed looks like this:
+
+- https://makepages-example.netlify.app/
+
+You may also try it out live:
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/Athlon1600/makepages/tree/master/apps/example)
+
+## :file_folder: Website Folder Structure
 
 For MakePages to work, it expects a certain folder structure. At minimum, it needs `src/pages` directory to read pages
 from. See how the entire build process works in the chart below:
@@ -72,10 +82,3 @@ flowchart TD
     I --> K["📁 dist/<br>Ready to deploy"]
     J --> K
 ```
-
-## Demo website
-
-This repository contains an example website at - :file_folder:[apps/example](https://github.com/Athlon1600/makepages/tree/master/apps/example), 
-which when deployed looks like this:
-
-- https://makepages-example.netlify.app/
