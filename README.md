@@ -49,13 +49,13 @@ makepages dev
 
 This will both start a local server and automatically rebuild your site when you make any changes.
 
-## Demo Playground
+## :boom: Demo Playground
 
 Folder `apps/example` contains an example website, which when deployed looks like this:
 
 - https://makepages-example.netlify.app/
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/Athlon1600/makepages/tree/master/apps/example)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/Athlon1600/makepages/tree/master/apps/example?file=src%2Fpages%2Findex.html)
 
 ## :file_folder: Website Folder Structure
 
