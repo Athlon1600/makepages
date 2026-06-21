@@ -16,7 +16,7 @@ You can then deploy it to many free cloud hosting providers to make it load fast
 
 **Requirements:** Node.js version 18 or newer.
 
-Install it globally on your system using npm:
+Install MakePages CLI globally on your system using npm:
 
 ```shell
 npm install -g makepages
@@ -93,3 +93,10 @@ makepages build --production
 ```
 
 This will build a **production optimized** site into a `dist` folder, which you can then upload to your hosting provider.
+
+## :white_check_mark: To-do list
+
+List of features that definitely deserve to be part of this project, but have not yet been implemented:
+
+- [ ] Add support for TypeScript
+- [ ] Add support for Sass/SCSS
