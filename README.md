@@ -14,13 +14,15 @@ You can then deploy it to many free cloud hosting providers to make it load fast
 
 ## :package: Installation
 
-**Requirements:** Node.js version 18 or above.
+**Requirements:** Node.js version 18 or newer.
 
 Install it globally on your system using npm:
 
 ```shell
 npm install -g makepages
 ```
+
+or you can install it into your existing project: `npm add makepages`
 
 ## :heavy_check_mark: Features
 
@@ -81,3 +83,13 @@ flowchart TD
     I --> K["📁 dist/<br>Ready to deploy"]
     J --> K
 ```
+
+## :rocket: Deploy
+
+When you are ready to publish your site, run:
+
+```shell
+makepages build --production
+```
+
+This will build a **production optimized** site into a `dist` folder, which you can then upload to your hosting provider.
