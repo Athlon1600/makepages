@@ -8,9 +8,7 @@
     "serve": "makepages serve",
     "build": "makepages build --production",
     "watch": "makepages build --watch",
-    "dev": "makepages dev",
-    "netlify:preview": "npx netlify deploy --filter=example --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --dir=./apps/example/dist",
-    "netlify:production": "npx netlify deploy --filter=example --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod --dir=./apps/example/dist"
+    "dev": "makepages dev"
   },
   "dependencies": {
     "makepages": "*",
