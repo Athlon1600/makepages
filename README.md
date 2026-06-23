@@ -53,9 +53,7 @@ This will both start a local server and automatically rebuild your site when you
 
 ## :boom: Demo Playground
 
-Folder `apps/example` contains an example website, which when deployed looks like this:
-
-- https://makepages-example.netlify.app/
+Folder `apps/example` contains an example website:
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/Athlon1600/makepages/tree/master/apps/example?file=src%2Fpages%2Findex.html)
 
@@ -92,7 +90,19 @@ When you are ready to publish your site, run:
 makepages build --production
 ```
 
-This will build a **production optimized** site into a `dist` folder, which you can then upload to your hosting provider.
+This will build a **production optimized** website into a `dist` folder, which you can then upload to your hosting provider.
+
+Our example website is automatically configured to deploy to multiple providers at once:
+
+| Provider   | Website URL                                                              |
+|------------|--------------------------------------------------------------------------|
+| Netlify    | [makepages-example.netlify.app/](https://makepages-example.netlify.app/) |
+| Vercel     | [makepages2.vercel.app/](https://makepages2.vercel.app/)                 |
+| Cloudflare | [makepages.pages.dev/](https://makepages.pages.dev/)                     |
+
+See the deployment logic here:
+
+- [deploy.yml](.github/workflows/deploy.yml)
 
 ## :white_check_mark: To-do list
 
