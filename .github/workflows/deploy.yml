@@ -38,9 +38,9 @@ jobs:
       - name: Deploy to Vercel
         run: |
           npm install -g vercel
-          vercel deploy --yes --project makepages --yes --prod --cwd dist/ --token ${{ secrets.VERCEL_TOKEN }}
+          vercel deploy --yes --project makepages --yes --prod --cwd ./apps/example/dist/ --token ${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: npx wrangler pages deploy ./dist --project-name my-project
+        run: npx wrangler pages deploy ./apps/example/dist --project-name makepages
