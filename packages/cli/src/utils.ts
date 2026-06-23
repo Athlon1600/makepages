@@ -1,4 +1,7 @@
 import {StringMatch} from "./types";
+import {Logger} from "./Logger";
+import path from "path";
+import fs from "fs";
 
 const crypto = require('crypto');
 
@@ -67,4 +70,13 @@ export function createAssetHash(data: string, maxLength: number = 8): string {
 export function packageVersion(): string {
     const {version} = require("../package.json");
     return version;
+}
+
+export function isCurrentDirectoryValid(): boolean {
+
+    const currentDir = process.cwd();
+    const srcPath = path.join(currentDir, 'src');
+    const publicPath = path.join(currentDir, 'public');
+
+    return !fs.existsSync(srcPath) && !fs.existsSync(publicPath);
 }

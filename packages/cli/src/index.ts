@@ -3,7 +3,8 @@ import {serve} from "./commands/serve";
 import {cleanCommand} from "./commands/clean";
 import {Logger} from "./Logger";
 import chalk from "chalk";
-import {packageVersion} from "./utils";
+import {isCurrentDirectoryValid, packageVersion} from "./utils";
+import {init} from "./commands/init";
 
 async function _runCli(): Promise<void> {
 
@@ -35,9 +36,26 @@ async function _runCli(): Promise<void> {
         await cleanCommand();
     } else if (action === "serve") {
         serve();
+    } else if (action === "init") {
+
+        const valid = isCurrentDirectoryValid();
+
+        if (!valid) {
+            Logger.error("Current working directory already contains src/ or public/ folders.");
+            process.exit(1);
+        }
+
+        init();
     }
 
+    // 3 commands in one
     if (action === "dev") {
+
+        if (isCurrentDirectoryValid()) {
+            Logger.info("Current working directory is empty. Downloading example project....");
+            await init();
+        }
+
         build(true);
         Logger.info(chalk.blue("Watching for file changes..."));
 
