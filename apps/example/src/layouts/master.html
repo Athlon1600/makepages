@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ title }}</title>
+    <title>{{ title | default("Untitled") }}</title>
+
+    <meta name=generator content="MakePages {{ version }}">
 
     <link rel="stylesheet" href="/styles.css">
 
@@ -12,38 +14,37 @@
 </head>
 <body>
 
-<div class="container">
+<header class="container">
 
-    <header>
-        <nav>
-            <div class="left">
-                <a href="/">Homepage</a>
-                <a href="/page1.html">Page 1</a>
-                <a href="/page2.html">Page 2</a>
-            </div>
+    <div style="height: 130px; width: 100%;">
+        <img src="/skyline.jpeg">
+    </div>
 
-            <div>
-                Current Time: <span id="current_time"></span>
-            </div>
+    <nav>
+        <div class="left">
+            <a href="/">Homepage</a>
+            <a href="/map.html">Map</a>
+            <a href="/places/">Places</a>
+            <a href="/vue.html">Vue.js</a>
+        </div>
 
-            <div class="right">
-                <a href="/about">About us</a>
-                <a href="/about/offices.html">Offices</a>
-            </div>
+        <div class="hide-tablet" style="padding-right: 10px;">
+            &#127794; Seattle Time: <span id="current_time"></span>
+        </div>
 
-        </nav>
-    </header>
+    </nav>
+</header>
 
-    <main>
+<main class="container">
+    <div style="padding: 0.8rem;">
         {% block content %}
         {% endblock %}
-    </main>
-
-</div>
-
-<script src="/assets/global.js"></script>
+    </div>
+</main>
 
 {% include "partials/footer.html" %}
+
+<script src="/assets/global.js"></script>
 
 </body>
 </html>
