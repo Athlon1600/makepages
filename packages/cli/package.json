@@ -1,7 +1,24 @@
 {
   "name": "makepages",
-  "version": "0.9.5",
-  "description": "Static site generator",
+  "version": "0.9.6",
+  "description": "A very simple and flexible Static Site Generator powered by esbuild and nunjucks",
+  "keywords": [
+    "static-site-generator",
+    "static-site",
+    "ssg",
+    "site-generator",
+    "website-generator",
+    "javascript",
+    "esbuild",
+    "nunjucks",
+    "chokidar",
+    "live-reload",
+    "html-webpack-plugin",
+    "jekyll",
+    "gatsby",
+    "hugo",
+    "11ty"
+  ],
   "license": "MIT",
   "bin": {
     "makepages": "dist/cli.js"
