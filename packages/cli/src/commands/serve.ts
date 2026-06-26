@@ -9,16 +9,18 @@ async function main() {
         host: "0.0.0.0",
         root: "./dist",
         open: true,
-        wait: 300,
+        wait: 600,
         middleware: [function (req, res, next) {
             next();
         }]
     };
 
+    // if main app shuts down, we explicitly tell live-server to shut down too
     registerShutdownCallback(() => {
         liveServer.shutdown();
     });
 
+    // TODO: promisify this somehow
     liveServer.start(params);
 }
 

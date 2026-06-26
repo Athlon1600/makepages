@@ -30,6 +30,12 @@ async function _runCli(): Promise<void> {
         process.exit(0);
     }
 
+    if (action === "version") {
+        const ver = packageVersion();
+        Logger.info(`You are using MakePages version ${ver}`);
+        return;
+    }
+
     if (action === 'build') {
         await build(isWatchMode);
     } else if (action == "clean") {
@@ -41,11 +47,16 @@ async function _runCli(): Promise<void> {
         const valid = isCurrentDirectoryValid();
 
         if (!valid) {
-            Logger.error("Current working directory already contains src/ or public/ folders.");
+            Logger.error("Current working directory is not empty.");
             process.exit(1);
         }
 
-        init();
+        try {
+            await init();
+        } catch (e) {
+            Logger.error(e);
+            process.exit(1);
+        }
     }
 
     // 3 commands in one
@@ -59,14 +70,10 @@ async function _runCli(): Promise<void> {
         build(true);
         Logger.info(chalk.blue("Watching for file changes..."));
 
-        // TODO: better off to just wait until dist directory is available
+        // wait until everything is built
         setTimeout(() => {
             serve();
         }, 800);
-    }
-
-    if (action === "version") {
-        console.log(packageVersion());
     }
 }
 

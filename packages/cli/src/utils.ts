@@ -77,6 +77,14 @@ export function isCurrentDirectoryValid(): boolean {
     const currentDir = process.cwd();
     const srcPath = path.join(currentDir, 'src');
     const publicPath = path.join(currentDir, 'public');
+    const packageJsonExists = fs.existsSync(path.join(currentDir, 'package.json'));
 
-    return !fs.existsSync(srcPath) && !fs.existsSync(publicPath);
+    return !packageJsonExists && !fs.existsSync(srcPath) && !fs.existsSync(publicPath);
+}
+
+export async function sleep(ms: number) {
+
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
 }

@@ -1,11 +1,5 @@
 import Signals = NodeJS.Signals;
-
-async function sleep(ms: number) {
-
-    return new Promise((resolve, reject) => {
-        setTimeout(resolve, ms);
-    });
-}
+import {sleep} from "./utils";
 
 const SHUTDOWN_SIGNALS: Array<Signals> = [
     'SIGHUP',
