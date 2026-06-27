@@ -7,22 +7,28 @@
 
 # MakePages
 
-MakePages is a very simple and flexible **static site generator** for Node.js.
+MakePages is a simple and easy-to-use **static site generator** for Node.js.
 
-Use it to generate a self-contained website that requires no server side rendering.
-You can then deploy it to many free cloud hosting providers to make it load fast globally.
+Use it to generate a self-contained website that requires no server side rendering, and is easy to deploy anywhere.
 
-## :package: Installation
+## Why another static site generator?
 
-**Requirements:** Node.js version 18 or newer.
+MakePages was built as a simpler alternative to other site generators that describe themselves as simple, but usually:
 
-Install MakePages CLI globally on your system using npm:
+- require too much additional configuration
+- have a steep learning curve
+- limit pages to Markdown language only
+- focus too much on blogs or documentation sites
 
-```shell
-npm install -g makepages
-```
+The goal of MakePages is to:
 
-or you can install it into your existing project: `npm add makepages`
+- be good enough for 90+% of use cases
+- be extremely simple to use
+- work out of the box with a single command
+- have documentation that fits on a single 5-minute read page 
+
+In the past, I created my own custom build scripts using a combination of webpack (HtmlWebpackPlugin especially), esbuild, nunjucks, chokidar and other libraries.
+MakePages finally combines all of that into a single command-line application.
 
 ## :heavy_check_mark: Features
 
@@ -34,33 +40,55 @@ or you can install it into your existing project: `npm add makepages`
 - Asset versioning (`/styles.css` => `/styles-4cded09.css`)
 - Automatic JS/CSS inlining when it makes sense.
 
-## Quick Start
+## :zap: Quick Start
 
-Create a directory for your project, and then navigate into it.
+**Requirements:** Node.js version 18 or newer.
+
+Install MakePages globally or locally:
+
+```shell
+## Install globally
+npm install -g makepages
+
+## Install locally
+npm add makepages
+```
+
+Create a directory for your project and navigate into it.
 
 ```shell
 mkdir example.com
 cd example.com
 ```
 
-Once inside, simply run:
+Once inside, simply run either:
 
 ```shell
+# If installed globally
 makepages dev
+
+## If NOT installed
+npx makepages dev
 ```
 
-This will both start a local server and automatically rebuild your site when you make any changes.
+The `dev` command builds your website into a `dist` folder, watches for changes,
+and starts a local server to preview your website:
+- http://localhost:9000
 
-## :boom: Demo Playground
+If your chosen directory is empty, MakePages will populate it with a basic starter website.
 
-Folder `apps/example` contains an example website:
+## :desktop_computer: Try it out
+
+The `apps/example` folder contains a sample project that you can explore live:
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/Athlon1600/makepages/tree/master/apps/example?file=src%2Fpages%2Findex.html)
 
 ## :file_folder: Website Folder Structure
 
-For MakePages to work, it expects a certain folder structure. At minimum, it needs `src/pages` directory to read pages
-from. See how the entire build process works in the chart below:
+MakePages expects a specific folder structure. At minimum, your project needs a `src/pages` directory to read your pages
+from. 
+
+See how the entire build process works in the chart below:
 
 ```mermaid
 flowchart TD
